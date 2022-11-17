@@ -22,7 +22,7 @@ const promptUser = () => {
             //employeeList.push(answers);
             console.log('');
             addEmployee(answers);
-            if (answers.askAgain){
+            if (answers.askAgain) {
                 promptUser();
             }
             else
