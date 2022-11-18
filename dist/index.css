@@ -5,8 +5,20 @@
     --quaternary: #EB6440;
 }
 
-header {
+h1 {
+    font-size: 3.0rem;
+}
+
+h1, h2 {
+    color: var(--quaternary);
+    text-shadow: var(--tertiary) 2px 2px;
+}
+
+
+header{
     margin: 10px;
+    background-color: var(--tertiary);
+    border: 5px inset var(--quaternary) ;
 }
 
 #team {
@@ -17,5 +29,10 @@ header {
 }
 
 .card {
-    margin: 10px;
+    margin: 30px;
+    background-color: var(--primary);
+}
+
+.card-header {
+    background-color: var(--secondary);
 }
