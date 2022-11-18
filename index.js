@@ -1,6 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const questions = require('./lib/questions'); // questions for inquirer
+const questions = require('./src/questions'); // questions for inquirer
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
@@ -29,6 +29,7 @@ const promptUser = previousList => {
         })
 }
 
+// creates and return new obj depending on employee type
 const getEmployeeObj = data => {
     const { employeeType, name, id, email } = data
 
@@ -45,15 +46,19 @@ const getEmployeeObj = data => {
     }
 }
 
+// builds and makes html webpage
 const buildPage = employeeList => {
     const generateCard = require('./src/generate-card.js')
     const generateHtml = require('./src/generate-html.js')
 
     //maps array with html sections for each employee then joins it together
     const cardListEl = employeeList.map(employee => generateCard(employee)).join('')
-    const htmlEl = generateHtml(cardListEl);
+    const htmlEl = generateHtml(cardListEl).trim();
 
-    console.log(htmlEl);
+    fs.writeFile('./dist/index_test.html', htmlEl, (err) => {
+        if (err) throw err;
+        console.log('The file has been created in "dist" folder!');
+    });
 }
 
 init();
