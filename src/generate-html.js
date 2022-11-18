@@ -1,3 +1,4 @@
+// takes in html section for employees and generates rest of page html
 const generateHtml = html => {
     return `
 <!DOCTYPE html>
@@ -14,7 +15,7 @@ const generateHtml = html => {
 </head>
 
 <body>
-    <header class="h-100 p-5 bg-light border rounded-3">
+    <header class="h-100 p-5 border rounded-3">
         <h1 class="text-center">Project Team</h1>
     </header>
     <main>

@@ -1,3 +1,4 @@
+// takes in obj and generates card html section then returns it
 const getTitleSpec = title => {
     switch (title) {
         case 'Intern':
@@ -26,7 +27,7 @@ const generateCard = data => {
     const titleData = getTitleData(title, arg)
 
     return `
-            <article class="card" style="width: 20rem;">
+            <article class="card shadow" style="width: 20rem;">
                 <div class="card-body">
                     <section class="card-header">
                         <h2 class="card-title">${name}</h2>
@@ -35,7 +36,7 @@ const generateCard = data => {
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">ID: ${id}</li>
                         <li class="list-group-item">
-                            Email: <a href="mailto: ${email}" class="card-link">${email}</a>
+                            Email: <a href="mailto:${email}" class="card-link">${email}</a>
                         </li>
                         <li class="list-group-item">${titleSpec}: ${titleData}</li>
                     </ul>
