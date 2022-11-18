@@ -1,3 +1,5 @@
+const generateHtml = html => {
+    return `
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,24 +19,7 @@
     </header>
     <main>
         <section id="team">
-            <!-- Cards go in here -->
-
-            <!-- <article class="card" style="width: 20rem;">
-                <div class="card-body">
-                    <section class="card-header">
-                        <h2 class="card-title">Employee Name</h2>
-                        <h3 class="card-subtitle mb-2 text-muted">Employee Title</h3>
-                    </section>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: </li>
-                        <li class="list-group-item">
-                            Email: <a href="mailto: abc@example.com" class="card-link">abc@example.com</a>
-                        </li>
-                        <li class="list-group-item">Role entry</li>
-                    </ul>
-                </div>
-            </article> -->
-
+            ${html}
         </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
@@ -43,3 +28,7 @@
 </body>
 
 </html>
+    `
+}
+
+module.exports =  generateHtml;

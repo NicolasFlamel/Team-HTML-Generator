@@ -5,50 +5,55 @@ const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 
-// list of employees 
-const employeeList = [];
-
 function init() {
-    fs.copyFile('./src/index.html', './dist/index.html', () => { })
-    fs.copyFile('./src/index.css', './dist/index.css', () => { })
     promptUser();
 }
 
 // prompt for user input
-const promptUser = () => {
+const promptUser = previousList => {
+    const employeeList = previousList || [];
+
     inquirer
         .prompt(questions)
         .then(answers => {
-            //employeeList.push(answers);
-            console.log('');
-            addEmployee(answers);
+            //pushes employee obj to an array
+            employeeList.push(getEmployeeObj(answers));
+
             if (answers.askAgain) {
-                promptUser();
+                // restarts prompt and passes list to keep data
+                console.log('');
+                promptUser(employeeList);
             }
             else
-                buildWebsite();
+                buildPage(employeeList);
         })
 }
 
-const addEmployee = (employee) => {
-    const { employeeType, name, id, email } = employee
+const getEmployeeObj = data => {
+    const { employeeType, name, id, email } = data
 
-    switch (employeeList) {
+    switch (employeeType) {
         case 'Intern':
-            const { school } = employee
-            break;
+            const { school } = data;
+            return new Intern(name, id, email, school);
         case 'Engineer':
-            const { github } = employee
-            break;
+            const { github } = data
+            return new Engineer(name, id, email, github)
         case 'Manager':
-            const { officeNumber } = employee
-            break;
+            const { officeNumber } = data
+            return new Manager(name, id, email, officeNumber)
     }
 }
 
-//builds the website
-const buildWebsite = () => {
+const buildPage = employeeList => {
+    const generateCard = require('./src/generate-card.js')
+    const generateHtml = require('./src/generate-html.js')
 
+    //maps array with html sections for each employee then joins it together
+    const cardListEl = employeeList.map(employee => generateCard(employee)).join('')
+    const htmlEl = generateHtml(cardListEl);
+
+    console.log(htmlEl);
 }
 
 init();
