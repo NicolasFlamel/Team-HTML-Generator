@@ -1,29 +1,44 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const questions = require('./src/questions'); // questions for inquirer
+const loadQuestions = require('./src/questions'); // questions for inquirer
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 
 function init() {
-    promptUser();
+    managerPrompt();
+}
+
+//first prompt for manager information
+const managerPrompt = () => {
+    const employeeList = []
+    const isManager = true;
+
+    console.log("Please enter your Manager's information");
+    inquirer
+        .prompt(loadQuestions(isManager))
+        .then(answers => {
+            employeeList.push(getEmployeeObj(answers));
+            employeePrompt(employeeList);
+        })
 }
 
 // prompt for user input
-const promptUser = previousList => {
+const employeePrompt = previousList => {
     const employeeList = previousList || [];
+    const isManager = false;
+
+    console.log('');
 
     inquirer
-        .prompt(questions)
+        .prompt(loadQuestions(isManager))
         .then(answers => {
             //pushes employee obj to an array
             employeeList.push(getEmployeeObj(answers));
 
-            if (answers.askAgain) {
-                // restarts prompt and passes list to keep data
-                console.log('');
-                promptUser(employeeList);
-            }
+            // restarts prompt and passes list to keep data
+            if (answers.askAgain)
+                employeePrompt(employeeList);
             else
                 buildPage(employeeList);
         })
@@ -55,7 +70,7 @@ const buildPage = employeeList => {
     const cardListEl = employeeList.map(employee => generateCard(employee)).join('')
     const htmlEl = generateHtml(cardListEl).trim();
 
-    fs.writeFile('./dist/index_test.html', htmlEl, (err) => {
+    fs.writeFile('./dist/index.html', htmlEl, (err) => {
         if (err) throw err;
         console.log('The file has been created in "dist" folder!');
     });
