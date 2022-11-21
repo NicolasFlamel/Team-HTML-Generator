@@ -1,26 +1,27 @@
 # Team HTML Generator
 
-GIVEN a command-line application that accepts user input
-WHEN I am prompted for my team members and their information
-THEN an HTML file is generated that displays a nicely formatted team roster based on user input
+## Description
 
-WHEN I click on an email address in the HTML
-THEN my default email program opens and populates the TO field of the email with the address
+Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
 
-WHEN I click on the GitHub username
-THEN that GitHub profile opens in a new tab
+- What was your motivation?
+- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
+- What problem does it solve?
+- What did you learn?
 
-WHEN I start the application
-THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
+## Installation
 
-WHEN I enter the team manager’s name, employee ID, email address, and office number
-THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
+- Have Nodejs installed (I used v16.18)
+- Install npm dependencies
+    - use 'npm install' on terminal once navigated to folder
 
-WHEN I select the engineer option
-THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
+## Usage
+Navigate to folder where index.js is located in your terminal then run the file using node, "node index.js" or use "npm start". You will be prompted to enter the project's manager information. Then you'll do the same for an employee, either an engineer or an intern. The program will then ask you if you wish to add another member and repeat the engineer/intern questions. This will continue to repeat until you wish to stop adding members then it will generate an HTML file in [this folder](./dist/). Use any browser to open the HTML file which will display a website generated using the information you provided including making links. Please see the
+[video demonstration](https://drive.google.com/file/d/1f-z4HC2X1LR7frlZjWk1a8fqbp_9WOEc/view) for it in practice. Below are example images of the terminal and the resulting website. 
 
-WHEN I select the intern option
-THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
+![project preview terminal](./assets/images/project_preview_terminal.png)
+![project preview website](./assets/images/project_preview_website.png)
 
-WHEN I decide to finish building my team
-THEN I exit the application, and the HTML is generated
+## License
+
+N/A
