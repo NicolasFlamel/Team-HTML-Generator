@@ -14,7 +14,7 @@ const getTitleData = (title, arg) => {
     let data = Object.values(arg)[0];
 
     if (title == 'Engineer') {
-        data = `<a href="https://github.com/${data}" class="card-link">${data}</a>`
+        data = `<a href="https://github.com/${data}" class="card-link" target="_blank" rel="noopener noreferrer">${data}</a>`
     }
 
     return data;
