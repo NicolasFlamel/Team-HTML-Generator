@@ -23,7 +23,7 @@ const managerPrompt = () => {
         })
 }
 
-// prompt for user input
+// prompt for employee info
 const employeePrompt = previousList => {
     const employeeList = previousList || [];
     const isManager = false;
