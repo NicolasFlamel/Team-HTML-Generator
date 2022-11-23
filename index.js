@@ -1,9 +1,11 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const loadQuestions = require('./src/questions'); // questions for inquirer
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
+const generateCard = require('./src/generate-card.js')
+const generateHtml = require('./src/generate-html.js')
+const loadQuestions = require('./src/questions'); // questions for inquirer
 
 function init() {
     managerPrompt();
@@ -63,9 +65,6 @@ const getEmployeeObj = data => {
 
 // builds and makes html webpage
 const buildPage = employeeList => {
-    const generateCard = require('./src/generate-card.js')
-    const generateHtml = require('./src/generate-html.js')
-
     //maps array with html sections for each employee then joins it together
     const cardListEl = employeeList.map(employee => generateCard(employee)).join('')
     const htmlEl = generateHtml(cardListEl).trim();
